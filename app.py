@@ -35,5 +35,3 @@ def create_entry():
             flash("Note content and title cannot be empty.", "danger")
 
     return redirect(url_for("Home"))
-
-app.run()
