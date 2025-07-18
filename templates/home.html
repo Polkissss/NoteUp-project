@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/styles.css"/>
+    <link rel="icon" type="image/x-icon" href="/static/logo.ico">
+    <title>NoteUp</title>
+</head>
+<body>
+    <header class="navbar">
+        <img class="navbar__brand-logo" src="/static/images/logo2.png" alt="NoteUp logo">
+        <ul class="navbar__navigation">
+            <li class="navbar__navigation-item"><a href="/" class="navbar__link"><b>Recent</b></a></li>
+            <li class="navbar__navigation-item"><a href="#" class="navbar__link">Calendar</a></li>
+        </ul>
+    </header>
+    <main class="main">
+        <section class="main__add_note">
+            <h1 class="main__add_note-header">Add a new note</h1>
+            <form action="/entry" class="main__form" method="post">
+                <input type="text" class="form__input-text" placeholder="Write a title for your note here..." name="note_title">
+                <textarea class="form__textarea" placeholder="Write a content of your new note here..." name="note_content"></textarea><br>
+                <button class="form__submit" type="submit">Add note</button>
+            </form>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="main__alert">
+                        <p class="main__alert-message">{{ message }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+        </section>
+        <section class="main__note_space">
+            <h1 class="main__note_space-header">Recent notes</h1>
+            {% for note in notes %}
+            <article class="main__note">
+                <div class="main__note-header">
+                    <h2 class="main__note-title">{{note.title}}  •
+                        <time datetime="{{note.date}}" class="main__note-date">{{note.better_date}}</time>
+                    </h2>
+                </div>
+                <p class="main__note-content">
+                    {{note.content}}
+                </p>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__content">
+            <section class="left">
+                <div class="footer__column">
+                    <a target="_blank" class="footer__item">This page was created by Piotr Krząstek</a>
+                    <a target="_blank" class="footer__item">More of my projects here</a>
+                    <a target="_blank" href="https://www.udemy.com/course/web-developer-bootcamp-flask-python" class="footer__item">Built with guidance from <em>Web Developer Bootcamp with Flask and Python in 2024</em> by Jose Salvatierra.</a>
+                    <a style="margin-top: 15px;">© 2025 Piotr Krząstek. All rights reserved.</a>
+                </div>
+                <div class="footer__column">
+                    <a class="footer__item">About</a>
+                    <a class="footer__item">How this was made</a>
+                </div>
+            </section>
+            <section class="right">
+                <div class="footer__contact">
+                    <a>Contact me:</a>
+                    <a>piotrkrzastek05@gmail.com</a>
+                    <div class="footer__icons">
+                        <a target="_blank" class="footer__logo" href="https://www.linkedin.com/in/piotr-krz%C4%85stek-5a7b36370/"><img src="/static/images/LinkedInIcon.png" width="30" alt="LinkedIn logo"></a>
+                        <a target="_blank" class="footer__logo" href="https://github.com/Polkissss"><img src="/static/images/GithubIcon.png" width="30" alt="GitHub logo"></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </footer>
+</body>
+</html>
