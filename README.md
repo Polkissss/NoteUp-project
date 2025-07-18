@@ -1,4 +1,4 @@
-### NoteUP project
+# NoteUP project
 
 NoteUp is a simple web-app containing users notes.
 It allows users to create, edit, and delete notes with a clean and minimal interface.
