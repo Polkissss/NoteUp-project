@@ -36,4 +36,4 @@ def create_entry():
 
     return redirect(url_for("Home"))
 
-app.run(debug=True)
+app.run()
